@@ -19,7 +19,7 @@ Met CTFLib hebben we een oplossing gecreëerd die zowel robuust als gebruiksvrie
 CTFLib is beschikbaar als een NPM package, en kan eenvoudig worden geïnstalleerd met behulp van de volgende commando's:
 
 ```bash
-IN AANTOCHT - NPM PUBLISH
+npm i ctflib @types/ctflib
 ```
 
 ## Auteurs en bijdragers
