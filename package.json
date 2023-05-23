@@ -2,7 +2,7 @@
     "name": "ctflib",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "dist/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -20,6 +20,6 @@
     "dependencies": {
         "typescript": "^5.0.4"
     },
-    "types": "index.d.ts",
+    "types": "dist/index.d.ts",
     "prepublish": "tsc"
 }
