@@ -1,0 +1,25 @@
+{
+    "name": "ctflib",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/IT-visibility/ctflib.git"
+    },
+    "keywords": [],
+    "author": "stuncs69",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/IT-visibility/ctflib/issues"
+    },
+    "homepage": "https://github.com/IT-visibility/ctflib#readme",
+    "dependencies": {
+        "typescript": "^5.0.4"
+    },
+    "types": "index.d.ts",
+    "prepublish": "tsc"
+}
