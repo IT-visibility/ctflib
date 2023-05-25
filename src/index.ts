@@ -46,7 +46,7 @@ export class Opdracht {
 
     async initDB() {
         let x = await initSqlJs({
-            locateFile: (file: any) => `./node_modules/sql.js/dist/${file}`,
+            locateFile: (file: any) => `./${file}`,
         });
 
         this.db = new x.Database();
