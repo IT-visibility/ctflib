@@ -1,8 +1,8 @@
 const initSqlJs = require("sql.js");
 
-interface sqlData {
+// interface sqlData {
     
-}
+// }
 
 /**
  * # Opdracht
@@ -19,7 +19,7 @@ interface sqlData {
  * @returns
  * @example
  */
-export class Opdracht {
+class Opdracht {
     id: number;
     naam: string;
     omschrijving: string;
@@ -42,17 +42,6 @@ export class Opdracht {
         this.punten = punten;
         this.categorie = categorie;
         this.token = token;
-    }
-
-    async initDB() {
-        let x = await initSqlJs({
-            locateFile: (file: any) => `./${file}`,
-        });
-
-        this.db = new x.Database();
-        this.db.run("CREATE TABLE opdrachten (id, naam, omschrijving, punten, categorie);");
-        this.db.run("INSERT INTO opdrachten VALUES (1, 'Opdracht 1', 'Dit is opdracht 1', 10, 'Categorie 1');");
-        return this.db;
     }
 
     /**
@@ -87,17 +76,16 @@ export class Opdracht {
      * @param query
      * @returns
      */
-    async runUnsafeSQL(query: string): Promise<any> {
+    async runUnsafeSQL(query: string, setup: string): Promise<any> {
         return new Promise(async (resolve, reject) => {
-            let x = await initSqlJs({
-                locateFile: (file: any) => `./${file}`,
-            });
+            let SQL = await initSqlJs({});
 
-            let y = new x.Database();
-            y.run("CREATE TABLE opdrachten (id, naam, omschrijving, punten, categorie);");
-            y.run("INSERT INTO opdrachten VALUES (1, 'Opdracht 1', 'Dit is opdracht 1', 10, 'Categorie 1');");
+            let y = new SQL.Database();
+            y.run(setup);
             let result = y.exec(query);
             resolve(result);
         });
     }
 }
+
+module.exports = Opdracht;
