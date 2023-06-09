@@ -1,4 +1,5 @@
 const initSqlJs = require("sql.js");
+const cryptojs = require("crypto");
 
 // interface sqlData {
     
@@ -27,6 +28,7 @@ class Opdracht {
     categorie: string;
     token: string;
     db: any;
+    userId: string;
     constructor(
         id: number,
         naam: string,
@@ -34,7 +36,7 @@ class Opdracht {
         punten: number,
         categorie: string,
         token: string,
-        db: any
+        userId: string,
     ) {
         this.id = id;
         this.naam = naam;
@@ -42,6 +44,7 @@ class Opdracht {
         this.punten = punten;
         this.categorie = categorie;
         this.token = token;
+        this.userId = userId;
     }
 
     /**
@@ -86,6 +89,34 @@ class Opdracht {
             resolve(result);
         });
     }
+
+    /**
+     * # getFlag
+     * Get the flag of the assignment
+     * ```typescript
+     * await opdracht.getFlag();
+     * ```
+     * Standard key for development: `0123456789ABCDEFFEDCBA987654321089ABCDEF01234567`
+     * @returns Promise<string>
+     */
+    async getFlag(): Promise<string> {
+        return new Promise(async (resolve, reject) => {
+            const opdrachtReq = await fetch("/api/opdracht", {
+                method: "POST",
+                body: JSON.stringify({
+                    token: this.token,
+                    id: this.id,
+                    userId: this.userId,
+                })
+            })
+
+            const opdracht = await opdrachtReq.json();
+
+            resolve(cryptojs.TripleDES.decrypt(opdracht.flag, "0123456789ABCDEFFEDCBA987654321089ABCDEF01234567").toString(cryptojs.enc.Utf8));
+
+        })
+    }
+
 }
 
 module.exports = Opdracht;

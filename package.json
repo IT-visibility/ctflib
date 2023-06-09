@@ -22,5 +22,8 @@
         "typescript": "^5.0.4"
     },
     "types": "dist/index.d.ts",
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "devDependencies": {
+        "crypto-js": "^4.1.1"
+    }
 }
